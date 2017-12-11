@@ -1042,13 +1042,13 @@ Content-Type для параметров запроса:  application/x-www-form
 
 .. code-block:: python
 
-    https://integrationapi.net/rest/Viber/SendBulk?SessionID=<Идентификатор сессии>&SourceAddress=<Адрес отправителя>&DestinationAddresses=<Номер(а) получателя>&Data=<Текст сообщения>&Validity=<Время жизни сообщения>&Optional=<Доп. параметр>
+    https://integrationapi.net/rest/Viber/SendBulk?SessionID=<Идентификатор сессии>&SourceAddress=<Адрес отправителя>&DestinationAddresses=<Номер(а) получателя>&Data=<Текст сообщения>&Validity=<Время жизни сообщения>&Optionals=<Доп. параметр(ы)>
     
 Ниже приведен пример запроса:
 
 .. code-block:: python
 
-    https://integrationapi.net/rest/Viber/SendBulk?SessionId=C619DF83829F4C3094CB54F4D62878786B5B&SourceAddress=TESTSMS&DestinationAddresses=79001234567&DestinationAddresses=79059999999&Data=testdata&Validity=86400&Optional=123456&Optional=789012
+    https://integrationapi.net/rest/Viber/SendBulk?SessionId=C619DF83829F4C3094CB54F4D62878786B5B&SourceAddress=TESTSMS&DestinationAddresses=79001234567&DestinationAddresses=79059999999&Data=testdata&Validity=86400&Optionals=123456&Optionals=789012
     
     
 **Табл. 12. Параметры POST-запроса на отправку Viber-сообщения на несколько номеров**
@@ -1075,7 +1075,7 @@ Content-Type для параметров запроса:  application/x-www-form
 +----------------------+------------+--------------------------------------------------------------------------+
 |                          Необязательные параметры                                                            |
 +----------------------+------------+--------------------------------------------------------------------------+
-| Optionals            |  String    | Дополнительный параметр                                                  |
+| Optionals            |  String    | Дополнительный параметр(или параметры в случае нескольких получателей)   |
 +----------------------+------------+--------------------------------------------------------------------------+
 
 Перед отправкой  Viber Сервис проверяет запрос на:
@@ -1227,13 +1227,13 @@ Content-Type для параметров запроса:  application/x-www-form
 
 .. code-block:: python
 
-    https://integrationapi.net/rest/Viber/SendWithResendBulk?SessionID=<Идентификатор сессии>&SourceAddress=<Адрес отправителя>&DestinationAddresses=<Номер(а) получателя>&Data=<Текст сообщения>&Validity=<Время жизни сообщения>&Optional=<Доп. параметр>
+    https://integrationapi.net/rest/Viber/SendWithResendBulk?SessionID=<Идентификатор сессии>&SourceAddress=<Адрес отправителя>&DestinationAddresses=<Номер(а) получателя>&Data=<Текст сообщения>&Validity=<Время жизни сообщения>&Optionals=<Доп. параметр(ы)>
     
 Ниже приведен пример запроса:
 
 .. code-block:: python
 
-    https://integrationapi.net/rest/Viber/SendWithResendBulk?SessionID=Z5CYSZEKDL1DPICU37WEHQVOYKP0T1GSLHX1&SourceAddress=TESTSMS&DestinationAddresses=79001234567&DestinationAddresses=79059999999&Data=testdata&Validity=86400&Optional=123456&Optional=789012
+    https://integrationapi.net/rest/Viber/SendWithResendBulk?SessionID=Z5CYSZEKDL1DPICU37WEHQVOYKP0T1GSLHX1&SourceAddress=TESTSMS&DestinationAddresses=79001234567&DestinationAddresses=79059999999&Data=testdata&Validity=86400&Optionals=123456&Optionals=789012
 
 
 **Табл. 14. Параметры POST-запроса на отправку Viber-сообщения с переотправкой по SMS**
@@ -1262,7 +1262,7 @@ Content-Type для параметров запроса:  application/x-www-form
 +----------------------+------------+--------------------------------------------------------------------------+
 |                          Необязательные параметры                                                            |
 +----------------------+------------+--------------------------------------------------------------------------+
-| Optionals            |  String    | Дополнительный параметр                                                  |
+| Optionals            |  String    | Дополнительный параметр(или параметры в случае нескольких получателей)   |
 +----------------------+------------+--------------------------------------------------------------------------+
 
 Перед отправкой  Viber Сервис проверяет запрос на:
