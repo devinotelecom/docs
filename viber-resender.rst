@@ -167,7 +167,7 @@ API поддерживает базовую авторизацию через з
         "status" : "ok"
         "messages" :
             [ {
-                "providerId" : 54321,
+                "providerId" : 3158611117333282816,
                 "code" : "ok"
             } ]
     }
@@ -462,7 +462,7 @@ API поддерживает базовую авторизацию через з
 .. code-block:: python
 
         [{
-    "id": 25161651616,
+    "id": 3158611117333282816,
     "receivedAt": "2007-11-29 00:00:00",
     "status": "undelived",
     "errorCode": "error"
