@@ -218,7 +218,7 @@
     HTTP/1.1 200 OK
     Cache-Control: private
     Connection: Keep-Alive
-    Content-Type: application/json; charset=utf-8
+    Content-Type: text/plain; charset=utf-8
     {sms=<Текст ответного сообщения>}
     
 
