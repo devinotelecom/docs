@@ -90,7 +90,7 @@ Authorization: Basic dGVzdGVyOjExMTExMQ==
         "validityPeriod": 30
     }
   }
-}
+
 
 Описание полей тела запроса отправки сообщения
 ----------------------------------------------
