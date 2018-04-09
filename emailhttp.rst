@@ -929,7 +929,7 @@ TaskState:
 Отправка транзакционного сообщения
 ----------------------------------
 
-**POST /Messages**
+**POST v2/messages**
 
 
 Метод отправляет транзакционное сообщение нескольким получателям с возможностью использования макросов. Если сообщение успешно добавлено в очередь, возвращается код "ok" и http код 201. В качестве Result возвращается идентификатор сообщения (string).
@@ -1027,6 +1027,7 @@ Recipient:
 
 * Перед началом отправки необходимо подтвердить адрес отправителя
 * В текст письма может быть включен макрос [Unsubscribe]  - на его место будет подставлена ссылка на страницу отписки.
+
 
 
 Отправка транзакционного сообщения (old)
@@ -1167,4 +1168,262 @@ State
         }
         
         
-        
+Получение callback
+------------------
+
+Данный метод позволяет не обращаться к API Devino каждый раз, когда требуется получить статус доставки сообщения, а обрабатывать входящие события от платформы Devino на своем внутреннем ресурсе.
+
+Запросы производятся по следующим событиям:
+
+* Отправлено (Sent)
+* Доставлено (Delivered)
+* Прочитано (Opened)
+* Переход по ссылке (Clicked)
+* Не удалось доставить (Bounced)
+* Отписался от рассылки (Unsubscribed)
+* Подписался на рассылки (Subscribed)
+* Жалоба (Complained)
+
+
+Пример запроса Sent:
+
+.. code-block:: json
+
+  {
+    "messageId":"MdbsucAq4Ro",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"SENT",
+    "url":null,
+    "dateTime":"2018-03-29T16:41:57.7943021",
+    "clientInfo":
+    {
+      "platform":null,
+      "operatingSystem":null,
+      "browser":null,
+      "userAgent":null,
+      "ipAddress":null,
+      "geolocation":
+      {
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+
+Пример запроса Delivered:
+
+.. code-block:: json
+
+  {  
+    "messageId":"MdzY0T1MFtT",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"DELIVERED",
+    "url":null,
+    "dateTime":"2018-04-02T17:16:56",
+    "clientInfo":
+    {  
+      "platform":null,
+      "operatingSystem":null,
+      "browser":null,
+      "userAgent":null,
+      "ipAddress":null,
+      "geolocation":
+      {  
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+
+
+Пример запроса Opened:
+
+.. code-block:: json
+
+  {
+    "messageId":"MdbsucAq4Ro",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"OPENED",
+    "url":null,
+    "dateTime":"2018-03-29T16:43:07.8801537",
+    "clientInfo":
+    {
+      "platform":"DESKTOP",
+      "operatingSystem":"Windows",
+      "browser":"Outlook",
+      "userAgent":"Mozilla/4.0(compatible;MSIE7.0;WindowsNT10.0;Win64;x64;Trident/7.0;.NET4.0C;.NET4.0E;.NETCLR2.0.50727;.NETCLR3.0.30729;.NETCLR3.5.30729;ASU2JS;MicrosoftOutlook16.0.9029;ms-office;MSOffice16)",
+      "ipAddress":"192.168.0.1",
+      "geolocation":
+      {
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+ 
+Пример запроса Clicked:
+
+.. code-block:: json
+
+  {  
+    "messageId":"MdbsucAq4Ro",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"CLICKED",
+    "url":"http://example.com",
+    "dateTime":"2018-03-29T16:44:31.536724",
+    "clientInfo":
+    {  
+      "platform":"DESKTOP",
+      "operatingSystem":"Windows",
+      "browser":"Chrome",
+      "userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+      "ipAddress":"192.168.0.1",
+      "geolocation":
+      {  
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+ 
+Пример запроса Unsubscribed:
+
+.. code-block:: json
+
+  {
+    "messageId":"MdbsucAq4Ro",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"UNSUBSCRIBED",
+    "url":null,
+    "dateTime":"2018-03-29T16:46:53.412013",
+    "clientInfo":
+    {
+      "platform":"DESKTOP",
+      "operatingSystem":"Windows",
+      "browser":"Chrome",
+      "userAgent":"Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/65.0.3325.181Safari/537.36",
+      "ipAddress":"192.168.0.1",
+      "geolocation":
+      {
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+  
+Пример запроса Subscribed:
+
+.. code-block:: json
+
+  {
+    "messageId":"MdbsucAq4Ro",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"SUBSCRIBED",
+    "url":null,
+    "dateTime":"2018-03-29T16:47:13.5839294",
+    "clientInfo":
+    {
+      "platform":"DESKTOP",
+      "operatingSystem":"Windows",
+      "browser":"Chrome",
+      "userAgent":"Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/65.0.3325.181Safari/537.36",
+      "ipAddress":"192.168.0.1",
+      "geolocation":
+      {
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+  
+Пример запроса Bounced:
+
+.. code-block:: json
+
+  {  
+    "messageId":"MdzY0T1MFtT",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"BOUNCED",
+    "url":null,
+    "dateTime":"2018-04-02T17:16:56",
+    "clientInfo":
+    {  
+      "platform":null,
+      "operatingSystem":null,
+      "browser":null,
+      "userAgent":null,
+      "ipAddress":null,
+      "geolocation":
+      {  
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+  
+Пример запроса Complained:
+
+.. code-block:: json
+
+  {  
+    "messageId":"MdzY0T1MFtT",
+    "taskId":0,
+    "userMessageId":null,
+    "userCampaignId":null,
+    "email":"address@example.com",
+    "event":"COMPLAINED",
+    "url":null,
+    "dateTime":"2018-04-02T17:16:56",
+    "clientInfo":
+    {  
+      "platform":null,
+      "operatingSystem":null,
+      "browser":null,
+      "userAgent":null,
+      "ipAddress":null,
+      "geolocation":
+      {  
+        "country":null,
+        "region":null,
+        "city":null
+      }
+    }
+  }
+ 
+Такие параметры, как userMessageId и userCampaignId будут переданы пустыми для следующих событий:
+
+* Delivered
+* Bounced
+* Complained
+ 
+ 
+В данный момент геолокация не определяется, поэтому в ближайшее время параметры country, region и city будут пустыми.
+ 
