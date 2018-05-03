@@ -89,7 +89,7 @@
   
 .. _imsi-docs:
 
-.. toctree::
+.. toc::
    :maxdepth: 2
    :caption: IMSI
    
