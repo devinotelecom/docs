@@ -13,6 +13,11 @@
 2. Заключите договор; 
 3. Ознакомьтесь с интересующей документацией. 
 
+.. _devinoonline:
+.. toctree::
+   :maxdepth: 2
+   :caption: Проверка номеров
+
 .. _devinoplatform:
 .. toctree::
    :maxdepth: 2
