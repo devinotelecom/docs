@@ -11,7 +11,8 @@
 Сервис создает HLR-задание в соответствии со значениями параметров, передаваемых сервису в POST-запросе следующего формата:
 
 .. code-block:: json
-  https://devino.online/api/v1/check_numbers/request?phone=<Номер получателя>
+
+   https://devino.online/api/v1/check_numbers/request?phone=<Номер получателя>
   
 
 +----------------------+------------+--------------------------------------------------------+--------------+
@@ -22,14 +23,16 @@
 
 
 Пример ответа:
+
 .. code-block:: json
-  {
-  "id": 0,
-  "campaign_id": 0,
-  "subscriber_id": 0,
-  "status": "string",
-  "created_at": "2018-05-03T09:45:06.416Z"
-  }
+
+   {
+   "id": 0,
+   "campaign_id": 0,
+   "subscriber_id": 0,
+   "status": "string",
+   "created_at": "2018-05-03T09:45:06.416Z"
+   }
   
 
 
@@ -39,7 +42,8 @@
 Данным запросом можно создать HLR-задание на несколько номеров.
 
 .. code-block:: json
-  https://devino.online/api/v1/check_numbers/requests?phones=<Номераполучателей>
+
+   https://devino.online/api/v1/check_numbers/requests?phones=<Номераполучателей>
 
 +----------------------+---------------+----------------------------------------------------+--------------+
 |      Параметр        | Тип данных    |    Описание                                        |Обязательный  |
@@ -49,21 +53,24 @@
 
 
 Пример ответа:
+
 .. code-block:: json
-  {
-  "id": 0,
-  "campaign_id": 0,
-  "subscriber_id": 0,
-  "status": "string",
-  "created_at": "2018-05-03T09:45:06.416Z"
-  }
+
+   {
+   "id": 0,
+   "campaign_id": 0,
+   "subscriber_id": 0,
+   "status": "string",
+   "created_at": "2018-05-03T09:45:06.416Z"
+   }
 
 
 Запустить созданные задания (GET)
 ---------------------------------
 
 .. code-block:: json
-  https://devino.online/api/v1/check_numbers/requests?page=<Номер страницы>&per_page=<Кол-во записей>
+
+   https://devino.online/api/v1/check_numbers/requests?page=<Номер страницы>&per_page=<Кол-во записей>
   
 +----------------------+------------+--------------------------------------------------------+--------------+
 |      Параметр        | Тип данных |    Описание                                            |Обязательный  |
@@ -79,7 +86,8 @@
 Данным методом можно получить информацию о выполнении запроса по его id.
 
 .. code-block:: json
-  https://devino.online/api/v1/check_numbers/requests/{id}
+
+   https://devino.online/api/v1/check_numbers/requests/{id}
   
   
 +----------------------+---------------+----------------------------------------------------+--------------+
@@ -93,7 +101,8 @@
 ---------------------------
 
 .. code-block:: json
-  https://devino.online/api/v1/check_numbers/statistics?start_date=<Дата начала>&end_date=<Дата конца>&page=<Номер страницы>&per_page=<Кол-во записей>
+
+   https://devino.online/api/v1/check_numbers/statistics?start_date=<Дата начала>&end_date=<Дата конца>&page=<Номер страницы>&per_page=<Кол-во записей>
   
 
 +----------------------+------------+--------------------------------------------------------+--------------+
