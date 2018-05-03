@@ -94,3 +94,11 @@
    :caption: IMSI
    
    imsi
+   
+.. _devinoonline-docs:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: DEVINO Online
+   
+   HLROnline
