@@ -1,7 +1,8 @@
-Проверка номеров с помощью HLR
-==============================
+Работа с HLR компаниями
+=======================
 
-В заголовках необходимо передавать параметры Content-Type : application/x-www-form-urlencoded ; ApiKey, передаваемй в заголовке запроса Authorization, полученный в личном кабинете для соответствующей компании "Проверка номеро".
+В заголовках необходимо передавать параметры Content-Type : application/x-www-form-urlencoded.
+Для авторизации используется ApiKey полученный в личном кабинете для соответствующей компании "Проверка номеров".
 Пример заголовка Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYW1wYWlnbiI6eyJpZCI6MzI3LCJ0eXBlIjoiQXBpQ2FtcGFpZ2
 
 Создание запроса на проверку одного номера (POST)
