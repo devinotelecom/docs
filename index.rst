@@ -13,84 +13,87 @@
 2. Заключите договор; 
 3. Ознакомьтесь с интересующей документацией. 
 
-
-.. _sms-docs:
-
+.. _devinoplatfrom:
 .. toctree::
    :maxdepth: 2
-   :caption: SMS Рассылки
+   :caption: Devino Platform
+   .. _sms-docs:
 
-   httpapi
-   httpapiv2
-   smpp
-   smtp
-   modyl1c
-   xml
-   soap
-   soapv2
-   ftps
-   1cbitrix
-   
-.. _incoming-docs:
+   .. toctree::
+      :maxdepth: 2
+      :caption: SMS Рассылки
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Входящие сообщения
+      httpapi
+      httpapiv2
+      smpp
+      smtp
+      modyl1c
+      xml
+      soap
+      soapv2
+      ftps
+      1cbitrix
    
-   httppriem
+   .. _incoming-docs:
+
+   .. toctree::
+      :maxdepth: 2
+      :caption: Входящие сообщения
+   
+      httppriem
    
    
-.. _viber-docs:
-.. toctree::
-   :maxdepth: 2
-   :caption: Viber
+   .. _viber-docs:
+   .. toctree::
+      :maxdepth: 2
+      :caption: Viber
    
-   viber-resender
+      viber-resender
 
 
-.. _email-docs:   
-.. toctree::
-   :maxdepth: 2
-   :caption: E-Mail Рассылки
+   .. _email-docs:   
+   .. toctree::
+      :maxdepth: 2
+      :caption: E-Mail Рассылки
    
-   emailsmtp
-   emailhttp
+      emailsmtp
+      emailhttp
 
-.. _vk-docs:
-.. toctree::
-   :maxdepth: 2
-   :caption: VK API
+   .. _vk-docs:
+   .. toctree::
+      :maxdepth: 2
+      :caption: VK API
 
-   VKAPI
+      VKAPI
 
-.. _hlr-docs:
+   .. _hlr-docs:
 
-.. toctree::
-   :maxdepth: 2
-   :caption: HLR HTTP API
+   .. toctree::
+      :maxdepth: 2
+      :caption: HLR HTTP API
    
-   httpapihlr   
+      httpapihlr   
 
-.. _addressbookapi-docs:
-.. toctree::
-   :maxdepth: 2
-   :caption: Адресная книга
+   .. _addressbookapi-docs:
+   .. toctree::
+      :maxdepth: 2
+      :caption: Адресная книга
    
-   addressbookapi
+      addressbookapi
    
 
-.. _phoneverification-docs:
-.. toctree::
-   :maxdepth: 2
-   :caption: Сервис двухфакторной аутентификации
+   .. _phoneverification-docs:
+   .. toctree::
+      :maxdepth: 2
+      :caption: Сервис двухфакторной аутентификации
    
-   phoneverification
+      phoneverification
 
   
-.. _imsi-docs:
+   .. _imsi-docs:
 
-.. toctree::
-   :maxdepth: 2
-   :caption: IMSI
+   .. toctree::
+      :maxdepth: 2
+      :caption: IMSI
    
-   imsi
+      imsi
