@@ -16,13 +16,14 @@
 
 .. _sms-docs::
 
-.. autosummary::
-   :toctree: modules 
+.. toctree::
    :maxdepth: 2
    :caption: SMS Рассылки
 
-   httpapi.httpapiv2
-   smpp.smtp
+   httpapi
+   httpapiv2
+   smpp
+   smtp
    modyl1c
    xml
    soap
