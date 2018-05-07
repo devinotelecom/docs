@@ -123,7 +123,7 @@
    
    SMSOnline
    HLROnline
-   VberOnline
+   ViberOnline
    EmailOnline
    
 
