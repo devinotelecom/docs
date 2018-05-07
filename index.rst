@@ -102,4 +102,6 @@
    :caption: DEVINO Online
    
    HLROnline
+.. toctree::
+   :maxdepth: 2
    EmailOnline
