@@ -126,17 +126,12 @@
 
 
 
-.. _hlronline-docs:
+.. _devinoonline-docs:
 
 .. toctree::
    :maxdepth: 2
-   :caption: HLR
+   :caption: DEVINO Online
    
-   HLROnline
+   devinoplatform
    
-.. _emailonline-docs:
-.. toctree::
-   :maxdepth: 2
-   :caption: EMAIL
-   
-   EmailOnline
+
