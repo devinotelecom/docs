@@ -111,18 +111,7 @@
 3. Ознакомьтесь с интересующей документацией. 
 
 При работе с API в заголовках необходимо передавать параметры Content-Type : application/x-www-form-urlencoded. 
-Для авторизации используется ApiKey полученный в личном кабинете для соответствующей компании. 
-Пример заголовка:
 
-.. code-block:: json
-
-   Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYW1wYWlnbiI6eyJpZCI6MzI3LCJ0eXBlIjoiQXBpQ2FtcGFpZ2
-   
-Формат запроса к API:
-   
-.. code-block:: json
-
-   https://devino.online/api/v1/
 
 
 
@@ -134,6 +123,7 @@
    
    SMSOnline
    HLROnline
+   VberOnline
    EmailOnline
    
 
