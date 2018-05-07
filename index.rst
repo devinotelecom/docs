@@ -121,7 +121,10 @@
    :maxdepth: 2
    :caption: DEVINO Online
    
+   SMSOnline
    ViberOnline
+   HLROnline
+   EmailOnline
    
    
 
