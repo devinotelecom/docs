@@ -102,3 +102,4 @@
    :caption: DEVINO Online
    
    HLROnline
+   EmailOnline
