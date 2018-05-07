@@ -132,6 +132,7 @@
    :maxdepth: 2
    :caption: DEVINO Online
    
-   devinoplatform
+   HLROnline
+   EmailOnline
    
 
