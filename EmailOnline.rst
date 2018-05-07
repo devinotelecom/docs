@@ -1,6 +1,20 @@
 Управление Email-компаниями 
 ===========================
 
+Для авторизации используется ApiKey полученный в личном кабинете для соответствующей компании. 
+Пример заголовка:
+
+.. code-block:: json
+
+   Authorization : Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjYW1wYWlnbiI6eyJpZCI6MzI3LCJ0eXBlIjoiQXBpQ2FtcGFpZ2
+   
+Точка подключения:
+   
+.. code-block:: json
+
+   https://devino.online
+   
+
 Получение списка Email-кампаний (GET)
 -------------------------------------
 
