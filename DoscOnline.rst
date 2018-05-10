@@ -166,7 +166,7 @@
 
    /api/v1/companies/current_balance
    
- Пример овтета:
+Пример овтета:
 
 .. code-block:: json
 
