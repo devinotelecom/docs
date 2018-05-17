@@ -8,7 +8,7 @@ HLR HTTP API
 
 .. code-block:: json
 	
-  https://integrationapi.net/rest/v2/Hlr/SendBulk?Login=<Логин>&Password=<Пароль>&DestinationAddresses=<Номер(а)получателя>&Validity=<Время жизни сообщения> 
+  https://integrationapi.net/rest/v2/Hlr/SendBulk?Login=<Логин>&Password=<Пароль>&DestinationAddresses=<Номерполучателя>&Validity=<Время жизни сообщения> 
 
   
 или вместо пары логин\пароль можно передавать SessionID
