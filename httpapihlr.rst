@@ -17,9 +17,11 @@ HLR HTTP API
 	
   https://integrationapi.net/rest/Hlr/SendBulk?SessionID=<Идентификатор сессии>&DestinationAddresses=<Номер получателя>&Validity=<Время жизни сообщения>
   
+Пример:
+
 .. code-block:: json
 	
-  https://integrationapi.net/rest/Hlr/SendBulk?SessionID=<Идентификатор сессии>&DestinationAddresses=<Номер получателя>&DestinationAddresses=<Номер получателя>&Validity=<Время жизни сообщения>
+  https://integrationapi.net/rest/Hlr/SendBulk?SessionID=4E1C44388AB54B38B097C17D5F949ECA4005&DestinationAddresses=+70000000001&DestinationAddresses=80000000002&Validity=5
 
 
 Параметры POST-запроса на отправку HLR-сообщения на несколько номеров
@@ -64,7 +66,12 @@ HLR HTTP API
 .. code-block:: json
 	
    https://integrationapi.net/rest/Hlr/State?SessionID=<Идентификатор сессии>&messageIds=<Идентификаторы сообщений>
-   
+
+Пример:
+
+.. code-block:: json
+	
+  https://integrationapi.net/rest/Hlr/State?SessionID=4E1C44388AB54B38B097C17D5F949ECA4005&messageIds=703112828852109312&messageIds=703112828852109313
    
 Поля ответа на статус сообщения:
 
