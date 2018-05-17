@@ -49,7 +49,7 @@ HLR HTTP API
   Cache-Control: private       
   Connection: Keep-Alive      
   Content-Type: application/json; charset=utf-8      
-  ["GW0261BBD6B3", "GW0261BBD6B6"]
+  ["703112828852109312", "703112828852109313"]
   
   
 Запрос статуса по HLR-сообщениям (GET)
@@ -96,7 +96,7 @@ HLR HTTP API
 .. code-block:: json
 
   [{
-       "messageId" : "GW0261BBD6B6" 
+       "messageId" : "703112828852109314" 
        "DestinationAddress": "+79001234567",
        "StateCode" : 1,
        "StateDesc" : "Отправляется",
