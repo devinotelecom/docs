@@ -67,7 +67,7 @@ Authorization: Basic dGVzdGVyOjExMTExMQ==
 
 .. code-block:: python
 
-  https://vk-send.devinotele.com/send/vk
+  https://vk.devinotele.com/send/vk
 
 В одном запросе может быть информация об отправке только одного сообщения.
 
@@ -324,7 +324,7 @@ Authorization: Basic dGVzdGVyOjExMTExMQ==
 
 .. code-block:: python
 
-  https://vk-send.devinotele.com/status/vk?message=<ID Вашего сообщения>
+  https://vk.devinotele.com/status/vk?message=<ID Вашего сообщения>
   
 **Описание параметров запроса статусов**
 
