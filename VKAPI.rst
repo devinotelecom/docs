@@ -560,9 +560,10 @@ Authorization: Basic dGVzdGVyOjExMTExMQ==
 .. code-block:: python
 
    [{
-    "id":1343343,
+    "messageId":1343343,
     "status": "DELIVERED",
-    "time": "2017-05-31 14:51:12"
+    "receivedAt": "2017-05-31 14:51:12",
+    "error":"Доставлено"
     }]
 	
   
