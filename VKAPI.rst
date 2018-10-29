@@ -78,7 +78,7 @@ Authorization: Basic dGVzdGVyOjExMTExMQ==
 	
   {  
    "vk":{  
-      "subject":"AO",
+      "subject":"TEST",
       "priority":"high",
       "routes":[  
          "vk"
@@ -92,7 +92,7 @@ Authorization: Basic dGVzdGVyOjExMTExMQ==
       }
    },
    "viber":{  
-      "subject":"AO",
+      "subject":"TEST",
       "priority":"high",
       "validityPeriodSec":30,
       "type":"viber",
