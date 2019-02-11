@@ -18,7 +18,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: SMS Рассылки
+   :caption: SMS
 
    httpapi
    httpapiv2
@@ -35,9 +35,9 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Входящие сообщения
+   :caption: Входящие SMS
    
-   httppriem
+   httpincoming
    
    
 .. _viber-docs:
@@ -51,7 +51,7 @@
 .. _email-docs:   
 .. toctree::
    :maxdepth: 2
-   :caption: E-Mail Рассылки
+   :caption: Email
    
    emailsmtp
    emailhttp
@@ -59,7 +59,7 @@
 .. _vk-docs:
 .. toctree::
    :maxdepth: 2
-   :caption: VK API
+   :caption: VK
 
    VKAPI
 

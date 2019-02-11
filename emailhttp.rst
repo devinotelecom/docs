@@ -1,5 +1,5 @@
 EMAIL HTTP API
-========
+==============
 
 Обзор
 -----
@@ -7,19 +7,20 @@ EMAIL HTTP API
 API предоставляет удобный интерфейс для автоматизации процесса отправки email-рассылок через платформу Devino Telecom. С помощью API можно отправлять массовые и транзакционные email-рассылки, управлять рассылками, получать полноценную статистику. Работа с API осуществляется в соответствии с принципами REST, посредством HTTP-запросов с использованием методов GET, POST, PUT, PATCH и DELETE.
 Для использования API необходима авторизация. Авторизация происходит по логину паролю от Личного Кабинета платформы Devino Telecom.
 
-.. warning:: Внимание! С 1 апреля стала доступна вторая версия Email API. С этого момента первая версия API не поддерживается.  
+.. warning::
+    Внимание! С 1 апреля стала доступна вторая версия Email API. С этого момента первая версия API не поддерживается.
 
-.. warning:: Внимание! В тексте обязательно должны присутствовать ссылка на отписку и ссылка на веб-версию. 
+.. warning::
+    Внимание! В тексте обязательно должны присутствовать ссылка на отписку и ссылка на веб-версию.
 
 Авторизация
 ~~~~~~~~~~~
 
 API поддерживает базовую авторизацию через заголовок Authorization (https://en.wikipedia.org/wiki/Basic_access_authentication). В заголовке запроса необходимо передать логин и пароль из Личного Кабинета в формате login:password в base64 кодировке.
 
-.. code-block:: json
+.. code-block:: text
 
-                *Authorization: Basic dGVzdGVyOjExMTExMQ==*
-                
+    *Authorization: Basic dGVzdGVyOjExMTExMQ==*
 
 
 Формат запроса
@@ -27,21 +28,20 @@ API поддерживает базовую авторизацию через з
 
 Запрос к API задается в следующем формате:
 
-.. code-block:: json
+.. code-block:: text
 
-        {тип_метода} https://integrationapi.net/email/v{версия}/{ресурс}?{параметры}
+    {тип_метода} https://integrationapi.net/email/v{версия}/{ресурс}?{параметры}
         
 
 где:
 
-.. code-block:: json
+.. code-block:: text
 
-        {тип_метода} - HTTP метод GET, POST, PUT, PATCH и DELETE.
-        {версия} - Версия API. Текущая версия - 2.
-        {ресурс} - URL ресурса, над которым выполняется действие. Список всех ресурсов смотрите в соответствующем разделе.
-        {параметры} - обязательные и необязательные параметры запроса, которые не входят в состав URL ресурса.
-        Обязательный пункт: Accept */*
-        
+    {тип_метода} - HTTP метод GET, POST, PUT, PATCH и DELETE.
+    {версия} - Версия API. Текущая версия - 2.
+    {ресурс} - URL ресурса, над которым выполняется действие. Список всех ресурсов смотрите в соответствующем разделе.
+    {параметры} - обязательные и необязательные параметры запроса, которые не входят в состав URL ресурса.
+    Обязательный пункт: Accept */*
 
 *Сервис позволяет передавать параметры и получать ответы в следующих форматах: JSON и XML.*
 
@@ -57,12 +57,9 @@ API поддерживает базовую авторизацию через з
 .. code-block:: json
   
       {    
-        "Result":
-          {
-              ...
-          },
-          "Code": "not_found",
-          "Description": "user not found"
+        "Result": {},
+        "Code": "not_found",
+        "Description": "user not found"
       }
       
 
@@ -87,9 +84,9 @@ API поддерживает базовую авторизацию через з
 
 Некоторые запросы предполагают возвращение только части данных. Для таких запросов необходимо передавать специальный заголовок:
 
-.. code-block:: json
+.. code-block:: text
 
-        Range: items=1-100
+    Range: items=1-100
         
 
 Оба предела диапазона включаются. При отсутствии заголовка такие запросы возвращают ошибку validation_error с http кодом 416 RequestedRangeNotSatisfiable.
@@ -99,9 +96,9 @@ API поддерживает базовую авторизацию через з
 
 В поле Description может возвращаться локализованная строка с текстом ошибки. Для этого необходимо передать заголовок Accept-Language с нужным языком. В текущей версии поддерживаются русский и английский языки. По умолчанию, если заголовок не передан или язык не найден среди доступных возвращаются ответы на английском.
 
-.. code-block:: json
+.. code-block:: text
 
-        Accept-Language: ru-RU
+    Accept-Language: ru-RU
 
 Управление адресами отправителя
 -------------------------------
@@ -133,22 +130,22 @@ API поддерживает базовую авторизацию через з
 
 .. code-block:: json
       
-      {
-            "Result":[
-                  {
-                        "SourceAddress": "blabla@gmail.com",
-                        "State": 1,
-                        "IsDefault": true
-                  },
-                  {
-                        "SourceAddress": "eeee@mailforspam.com",
-                        "State": 1,
-                        "IsDefault": false
-                  }
-            ],
-            "Code": "ok",
-            "Description": "ok"
-      }
+    {
+        "Result":[
+            {
+                "SourceAddress": "blabla@gmail.com",
+                "State": 1,
+                "IsDefault": true
+            },
+            {
+                "SourceAddress": "eeee@mailforspam.com",
+                "State": 1,
+                "IsDefault": false
+            }
+        ],
+        "Code": "ok",
+        "Description": "ok"
+    }
       
 Добавление адреса отправителя
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -168,16 +165,18 @@ API поддерживает базовую авторизацию через з
 
 .. code-block:: json
 
-      {"SourceAddress":"test@gmail.com"}
+    {
+        "SourceAddress":"test@gmail.com"
+    }
       
 Пример ответа
 
 .. code-block:: json
 
-      {
-            "Code": "ok",
-            "Description": "ok"
-      }
+    {
+        "Code": "ok",
+        "Description": "ok"
+    }
       
 Удаление адреса отправителя
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -196,10 +195,10 @@ API поддерживает базовую авторизацию через з
 
 .. code-block:: json
 
-      {
-            "Code": "ok",
-            "Description": "ok"
-      }
+    {
+        "Code": "ok",
+        "Description": "ok"
+    }
 
 Управление рассылками
 ---------------------
@@ -229,53 +228,52 @@ API поддерживает базовую авторизацию через з
 
 .. code-block:: json
 
-      {
-            "Result": [
-                  {
-                        "SourceName": "test",
-                        "Price": 0.23,
-                        "SendDuplicates": false,
-                        "Cancellable": true,
-                        "Deletable": false,
-                        "NextStartDateTime": "/Date(1473417269843-0000)/",
-                        "State": "Waiting",
-                        "TotalContacts": 10000,
-                        "CompletedContacts": 10000,
-                        "ErrorCount": 0,
-                        "IsExecuting": false,
-                        "ServiceType": "Email",
-                        "IsSmooth": false,
-                        "IsPersonalized": false,
-                        "ID": 130872,
-                        "Name": "test",
-                        "OwnerLogin": "test",
-                        "Type": "Distribution",
-                        "Groups": [],
-                        "IncludedContacts": [],
-                        "ExcludedContacts": [],
-                        "ManualContacts": [],
-                        "StopList": [],
-                        "Text": "<p>test</p>",
-                        "Subject": "test",
-                        "MessageValidity": 0,
-                        "MessageType": "Email",
-                        "TaskMessageType": "11",
-                        "DoTransliterate": false,
-                        "SourceAddress": "pavel.voropaev@seedway.ru",
-                        "StartDateTime": "/Date(1395809939517-0000)/",
-                        "Period": "None",
-                        "GlobalState": "Paused",
-                        "GlobalStateInfo": 
-                               {
-                               "State": "Paused"
-                               },
-                        "PercentageCompleted": 100,
-                        "MessageValidityAsTimeSpan": "1.00:00:00"
-                  }
-            ],
-            "Code": "ok",
-            "Description": "ok"
-      }
+    {
+        "Result": [
+            {
+                "SourceName": "test",
+                "Price": 0.23,
+                "SendDuplicates": false,
+                "Cancellable": true,
+                "Deletable": false,
+                "NextStartDateTime": "/Date(1473417269843-0000)/",
+                "State": "Waiting",
+                "TotalContacts": 10000,
+                "CompletedContacts": 10000,
+                "ErrorCount": 0,
+                "IsExecuting": false,
+                "ServiceType": "Email",
+                "IsSmooth": false,
+                "IsPersonalized": false,
+                "ID": 130872,
+                "Name": "test",
+                "OwnerLogin": "test",
+                "Type": "Distribution",
+                "Groups": [],
+                "IncludedContacts": [],
+                "ExcludedContacts": [],
+                "ManualContacts": [],
+                "StopList": [],
+                "Text": "<p>test</p>",
+                "Subject": "test",
+                "MessageValidity": 0,
+                "MessageType": "Email",
+                "TaskMessageType": "11",
+                "DoTransliterate": false,
+                "SourceAddress": "pavel.voropaev@seedway.ru",
+                "StartDateTime": "/Date(1395809939517-0000)/",
+                "Period": "None",
+                "GlobalState": "Paused",
+                "GlobalStateInfo":{
+                    "State": "Paused"
+                },
+                "PercentageCompleted": 100,
+                "MessageValidityAsTimeSpan": "1.00:00:00"
+            }
+        ],
+        "Code": "ok",
+        "Description": "ok"
+    }
 
 Получение рассылки
 ~~~~~~~~~~~~~~~~~~
@@ -404,42 +402,48 @@ EmailTaskCounters
 
 .. code-block:: json
 
-        {
-                "Result":{
-                        "Login": "TEST",
-                        "Name": "q",
-                        "Sender":{
-                                "Address": "xxx@gmail.com",
-                                "Name": "yyy"
-                        },
-                        "Subject": "%Имя%",
-                        "Text": "blablabla",
-                        "StartDateTime": "/Date(1440501564737-0000)/",
-                        "UserCampaignId": "",
-                        "State": "Finished",
-                        "Price": 10,
-                        "Counters":{
-                                "TotalContacts": 2,
-                                "Duplicates": 0,
-                                "Unsubscribed": 0,
-                                "Excluded": 0,
-                                "OverPackage": 0,
-                                "SpamScore": 2.2,
-                                "TaskId": 10500700
-                        },
-                        "Type": "Distribution",
-                        "Contacts":[
-                                {"Id": 7907323000, "Included": true},
-                                {"Id": 8603950002, "Included": true}
-                        ],
-                        ContactGroups":[],
-                        "CreatorLogin": "TEST",
-                        "SendDuplicates": false,
-                        "TaskId": 10592701
+    {
+        "Result":{
+            "Login": "TEST",
+            "Name": "q",
+            "Sender":{
+                "Address": "xxx@gmail.com",
+                "Name": "yyy"
+            },
+            "Subject": "%Имя%",
+            "Text": "blablabla",
+            "StartDateTime": "/Date(1440501564737-0000)/",
+            "UserCampaignId": "",
+            "State": "Finished",
+            "Price": 10,
+            "Counters":{
+                "TotalContacts": 2,
+                "Duplicates": 0,
+                "Unsubscribed": 0,
+                "Excluded": 0,
+                "OverPackage": 0,
+                "SpamScore": 2.2,
+                "TaskId": 10500700
+            },
+            "Type": "Distribution",
+            "Contacts":[
+                {
+                    "Id": 7907323000,
+                    "Included": true
                 },
-                "Code": "ok",
-                "Description": "ok"
-        }
+                {
+                    "Id": 8603950002,
+                    "Included": true
+                }
+            ],
+            "ContactGroups":[],
+            "CreatorLogin": "TEST",
+            "SendDuplicates": false,
+            "TaskId": 10592701
+        },
+        "Code": "ok",
+        "Description": "ok"
+    }
         
 
 Создание рассылки
@@ -531,40 +535,44 @@ ContactGroupDto:
 
 .. code-block:: json
 
-        {
-            "Name":"test",
-            "Sender":
+    {
+        "Name":"test",
+        "Sender":{
+            "Address":"xxx@gmail.com",
+            "Name":"yyy"
+        },
+        "Subject":"test subj",
+        "Text":"test [Unsubscribe][WebVersion]",
+        "StartDateTime":"08/31/2015 13:30:38",
+        "UserCampaignId":"",
+        "ContactGroups":[
             {
-                "Address":"xxx@gmail.com",
-                "Name":"yyy"
+                "Id":252,
+                "Included":true
             },
-            "Subject":"test subj",
-            "Text":"test [Unsubscribe][WebVersion]",
-            "StartDateTime":"08/31/2015 13:30:38",
-            "UserCampaignId":"",
-            "ContactGroups":[
-                {"Id":252,"Included":true},
-                {"Id":234,"Included":true}
-            ]
-        }
+            {
+                "Id":234,
+                "Included":true
+            }
+        ]
+    }
         
 
 Пример ответа:
 
 .. code-block:: json
 
-        {
-            "Result":
-            {
-                "TaskId": 133875,
-                "TotalContacts": 1,
-                "Dublicates": 0,
-                "Unsubscribed": 0,
-                "Excluded": 0
-            },
-            "Code": "ok",
-            "Description": "new task added"
-        }
+    {
+        "Result":{
+            "TaskId": 133875,
+            "TotalContacts": 1,
+            "Dublicates": 0,
+            "Unsubscribed": 0,
+            "Excluded": 0
+        },
+        "Code": "ok",
+        "Description": "new task added"
+    }
         
 
 Редактирование рассылки
@@ -619,17 +627,19 @@ TaskState:
 
 .. code-block:: json
 
-        {"State":1}
+    {
+        "State":1
+    }
         
  
 Пример ответа:
 
 .. code-block:: json
 
-        {
-            "Code": "ok",
-            "Description": "ok"
-        }
+    {
+        "Code": "ok",
+        "Description": "ok"
+    }
         
 Шаблоны
 -------
@@ -671,17 +681,17 @@ TaskState:
 
 .. code-block:: json
 
-        {
-                "Result":{
-                        "Login": "tester",
-                        "Name": "test",
-                        "Sender":{},
-                        "Text": "test [Unsubscribe] [WebVersion]",
-                        "TemplateId": 1
-                },
-                "Code": "ok",
-                "Description": "ok"
-        }
+    {
+        "Result":{
+            "Login": "tester",
+            "Name": "test",
+            "Sender":{},
+            "Text": "test [Unsubscribe] [WebVersion]",
+            "TemplateId": 1
+        },
+        "Code": "ok",
+        "Description": "ok"
+    }
 
 Создание шаблона
 ~~~~~~~~~~~~~~~~
@@ -717,21 +727,23 @@ TaskState:
 
 .. code-block:: json
 
-        {
-                "Name":"test",
-                "Sender":{"Name":"good sender"},
-                "Text":"good text [Unsubscribe] [WebVersion]"
-        }
+    {
+        "Name":"test",
+        "Sender":{
+            "Name":"good sender"
+        },
+        "Text":"good text [Unsubscribe] [WebVersion]"
+    }
 
 Пример ответа
 
 .. code-block:: json
 
-        {
-                "Result": 123,
-                "Code": "ok",
-                "Description": "ok"
-        }
+    {
+        "Result": 123,
+        "Code": "ok",
+        "Description": "ok"
+    }
 
 
 Обновление шаблона
@@ -761,47 +773,49 @@ TaskState:
 
 Возвращаемый результат
 
-+---------------+------------+--------------------------------------------------+
-| Параметр      | Тип данных | Описание                                         |
-+===============+============+==================================================+
-| TemplateId    | int        | Идентификатор шаблона                            |
-+---------------+------------+--------------------------------------------------+
-| Name          | string     | Название                                         |
-+---------------+------------+--------------------------------------------------+
-| Sender        |EmailAddress| Отправитель - адрес и имя                        |
-+---------------+------------+--------------------------------------------------+
-| Subject       | string     | Тема                                             |
-+---------------+------------+--------------------------------------------------+
-| Text          | string     | Текст                                            |
-+---------------+------------+--------------------------------------------------+
-|UserTemplateId | string     | Внешний идентификатор                            |
-+---------------+------------+--------------------------------------------------+
++---------------+--------------+--------------------------------------------------+
+| Параметр      | Тип данных   | Описание                                         |
++===============+==============+==================================================+
+| TemplateId    | int          | Идентификатор шаблона                            |
++---------------+--------------+--------------------------------------------------+
+| Name          | string       | Название                                         |
++---------------+--------------+--------------------------------------------------+
+| Sender        | EmailAddress | Отправитель - адрес и имя                        |
++---------------+--------------+--------------------------------------------------+
+| Subject       | string       | Тема                                             |
++---------------+--------------+--------------------------------------------------+
+| Text          | string       | Текст                                            |
++---------------+--------------+--------------------------------------------------+
+|UserTemplateId | string       | Внешний идентификатор                            |
++---------------+--------------+--------------------------------------------------+
 
 Пример запроса
 
 .. code-block:: json
 
-        {
-                "Name":"test",
-                "Sender":{"Name":"good sender"},
-                "Text":"good text [Unsubscribe] [WebVersion]"
-        }
+    {
+        "Name":"test",
+        "Sender":{
+            "Name":"good sender"
+        },
+        "Text":"good text [Unsubscribe] [WebVersion]"
+    }
 
 Пример ответа
 
 .. code-block:: json
 
-        {
-                "Result":{
-                    "Login":"tester",
-                      "Name":"test",
-                      "Sender":{"Name":"good sender"},
-                       "Text":"good text [Unsubscribe] [WebVersion]",
-                       "TemplateId": 1
-                },
-                "Code": "ok",
-                "Description": "ok"
-        }
+    {
+        "Result":{
+            "Login":"tester",
+            "Name":"test",
+            "Sender":{"Name":"good sender"},
+            "Text":"good text [Unsubscribe] [WebVersion]",
+            "TemplateId": 1
+        },
+        "Code": "ok",
+        "Description": "ok"
+    }
 
 Удаление шаблонов
 ~~~~~~~~~~~~~~~~~
@@ -822,10 +836,10 @@ TaskState:
 
 .. code-block:: json
 
-        {
-                "Code": "ok",
-                "Description": "ok"
-        }
+    {
+        "Code": "ok",
+        "Description": "ok"
+    }
         
 Статистика
 ----------
@@ -860,20 +874,20 @@ TaskState:
 
 .. code-block:: json
 
-        {
-                "Result": {
-                        "NotSent": 30,
-                        "Sent": 0,
-                        "Delivered": 0,
-                        "Read": 0,
-                        "Clicked": 0,
-                        "Bounced": 0,
-                        "Rejected": 0,
-                        "Total": 30
-                },
-                "Code": "ok",
-                "Description": "ok"
-        }
+    {
+        "Result": {
+            "NotSent": 30,
+            "Sent": 0,
+            "Delivered": 0,
+            "Read": 0,
+            "Clicked": 0,
+            "Bounced": 0,
+            "Rejected": 0,
+            "Total": 30
+        },
+        "Code": "ok",
+        "Description": "ok"
+    }
         
 Получение детализации
 ~~~~~~~~~~~~~~~~~~~~~
@@ -910,20 +924,20 @@ TaskState:
 
 .. code-block:: json
 
-        {
-                "Result": [
-                        {
-                        "State": "NotSent",
-                        "Price": 0,
-                        "Id": 141471292110003601,
-                        "DestinationEmail": "user@devinotele.com",
-                        "LastUpdateUtc": "/Date(1485937304700-0000)/",
-                        "CreatedDateUtc": "/Date(1485937304000-0000)/"
-                        }
-                ],
-                "Code": "ok",
-                "Description": "ok"
-        }
+    {
+        "Result": [
+            {
+                "State": "NotSent",
+                "Price": 0,
+                "Id": 141471292110003601,
+                "DestinationEmail": "user@devinotele.com",
+                "LastUpdateUtc": "/Date(1485937304700-0000)/",
+                "CreatedDateUtc": "/Date(1485937304000-0000)/"
+            }
+        ],
+        "Code": "ok",
+        "Description": "ok"
+    }
         
 
 Отправка транзакционного сообщения
@@ -950,7 +964,7 @@ TaskState:
 +================+================+================================================+==============+
 | Sender         | Массив String  | Отправитель - адрес и имя                      | Да           |
 +----------------+----------------+------------------------------------------------+--------------+
-| Recipients      | Список         | Список получателей (см. табл. 2)               | Да           |
+| Recipients     | Список         | Список получателей (см. табл. 2)               | Да           |
 +----------------+----------------+------------------------------------------------+--------------+
 | Subject        | String         | Тема письма                                    | Да           |
 +----------------+----------------+------------------------------------------------+--------------+
@@ -982,47 +996,47 @@ Recipient:
 
 .. code-block:: json
 
-        {
-            "Sender": {
-                "Address": "sourceaddress@example.com",
-                "Name": "Test"
+    {
+        "Sender":{
+            "Address": "sourceaddress@example.com",
+            "Name": "Test"
+        },
+        "Recipients": [
+            {
+                "MergeFields": {
+                "ExtField":"5 дней",
+                "Name": "Иван"
             },
-            "Recipients": [
-                {
-                    "MergeFields": {
-                        "ExtField":"5 дней",
-                        "Name": "Иван"
-                    },
-                    "RecipientId": "",
-                    "Address": "ivan@example.com",
-                    "Name": "Ivan"
-                }
-            ],
-            "Subject": "Ув. [Name]!",
-            "Body": {
-                "Html": "Ув. [Name]! Осталось [ExtField]<br><a href=\"[Unsubscribe]\">Отписаться</a>",
-                "PlainText": "Ув. {ExtField}! Ждем вас завтра! [Unsubscribe]"
-            },
-            "UserCampaignId": "1234"
-        }
+                "RecipientId": "",
+                "Address": "ivan@example.com",
+                "Name": "Ivan"
+            }
+        ],
+        "Subject": "Ув. [Name]!",
+        "Body": {
+            "Html": "Ув. [Name]! Осталось [ExtField]<br><a href=\"[Unsubscribe]\">Отписаться</a>",
+            "PlainText": "Ув. {ExtField}! Ждем вас завтра! [Unsubscribe]"
+        },
+        "UserCampaignId": "1234"
+    }
         
 
 Пример ответа:
 
 .. code-block:: json
 
-        {
-            "Result": [
-                {
-                    "Index":0,
-                    "Address":"ivan@example.com",
-                    "MessageId":"Mdz0i7z1Dyp",
-                    "Code":"ok"
-                }
-            ],
-            "Code":"ok",
-            "Description":"ok"
-        }
+    {
+        "Result": [
+            {
+                "Index":0,
+                "Address":"ivan@example.com",
+                "MessageId":"Mdz0i7z1Dyp",
+                "Code":"ok"
+            }
+        ],
+        "Code":"ok",
+        "Description":"ok"
+    }
         
 
 Сценарии:
@@ -1074,23 +1088,29 @@ Recipient:
 
 .. code-block:: json
 
-        {
-           "Sender": {"Address":"test@test.com","Name":"name"},
-           "Recipient": {"Address":"test@supertest.com", "Name":"name" },
-           "Subject":"test subj",
-           "Text":"test"
-        }
+    {
+        "Sender":{
+            "Address":"test@test.com",
+            "Name":"name"
+        },
+        "Recipient":{
+            "Address":"test@supertest.com",
+            "Name":"name"
+        },
+        "Subject":"test subj",
+        "Text":"test"
+    }
         
 
 Пример ответа:
 
 .. code-block:: json
 
-        {
-            "Result": "kaAtrHbZ72",
-            "Code": "ok",
-            "Description": "message queued to send"
-        }
+    {
+        "Result": "kaAtrHbZ72",
+        "Code": "ok",
+        "Description": "message queued to send"
+    }
         
 
 Сценарии:
@@ -1155,30 +1175,34 @@ State
 
 .. code-block:: json
 
-        {
-            "Result":[
-                {
-                    "MessageId": "y49EiXaPY1",
-                    "Email": "ftw@gmail.com",
-                    "State": "Sent"
-                },
-                {
-                    "MessageId": "y49cjxHxxI",
-                    "Email": "blabla@gmail.com",
-                    "State": "NotSent"
-                }
-            ],
-            "Code": "ok",
-            "Description": "ok"
-        }
+    {
+        "Result":[
+            {
+                "MessageId": "y49EiXaPY1",
+                "Email": "ftw@gmail.com",
+                "State": "Sent"
+            },
+            {
+                "MessageId": "y49cjxHxxI",
+                "Email": "blabla@gmail.com",
+                "State": "NotSent"
+            }
+        ],
+        "Code": "ok",
+        "Description": "ok"
+    }
         
         
 Получение callback
 ------------------
 
-Данный метод позволяет не обращаться к API Devino каждый раз, когда требуется получить статус доставки сообщения, а обрабатывать входящие события от платформы Devino на своем внутреннем ресурсе.
+Данный метод позволяет не обращаться к API Devino каждый раз, когда требуется получить статус доставки сообщения,
+а обрабатывать входящие события от платформы Devino на своем внутреннем ресурсе.
 
-.. warning:: Внимание! Для подключения URL для приема статусов Email-сообщений обратитесь к вашему менеджеру или напишите письмо в техническую поддержку support@devinotele.com
+.. warning::
+    Внимание!
+    Для подключения URL для приема статусов Email-сообщений обратитесь к вашему менеджеру или напишите письмо
+    в техническую поддержку support@devinotele.com
 
 Запросы производятся по следующим событиям:
 
@@ -1191,246 +1215,311 @@ State
 * Подписался на рассылки (Subscribed)
 * Жалоба (Complained)
 
+Параметры запроса:
+~~~~~~~~~~~~~~~~~~
+
++----------------+----------------+-----------------------------------------+--------------------------+
+| Параметр       | Тип данных     | Описание                                | Доступен в событиях      |
++================+================+=========================================+==========================+
+| messageId      | string         | Идентификатор сообщения                 | Во всех                  |
++----------------+----------------+-----------------------------------------+--------------------------+
+| taskId         | int            | Идентификатор рассылки                  | Во всех                  |
++----------------+----------------+-----------------------------------------+--------------------------+
+| userMessageId  | string         | Клиентский идентификатор сообщения      | Во всех, кроме delivered |
+|                |                |                                         | bounced, complained      |
++----------------+----------------+-----------------------------------------+--------------------------+
+| userCampaignId | string         | Клиентский идентификатор кампании       | Во всех, кроме delivered |
+|                |                |                                         | bounced, complained      |
++----------------+----------------+-----------------------------------------+--------------------------+
+| email          | string         | Email получателя                        | Во всех                  |
++----------------+----------------+-----------------------------------------+--------------------------+
+| event          | Event          | Событие                                 | Во всех                  |
++----------------+----------------+-----------------------------------------+--------------------------+
+| url            | string         | Url, по которому перешел получатель     | clicked                  |
++----------------+----------------+-----------------------------------------+--------------------------+
+| dateTime       | string         | Дата и время события                    | Во всех                  |
++----------------+----------------+-----------------------------------------+--------------------------+
+| clientInfo     | ClientInfo     | Информация о получателе                 | opened, clicked,         |
+|                |                |                                         | unsubscribed             |
++----------------+----------------+-----------------------------------------+--------------------------+
+
+*В случае, если параметр недоступен в событии, то значение параметра будет null*
+
+Event
+~~~~~
+
++----------------+-------------------------+
+| Значение       | Описание                |
++================+=========================+
+| SENT           | Отправлено              |
++----------------+-------------------------+
+| DELIVERED      | Доставлено              |
++----------------+-------------------------+
+| OPENED         | Прочитано               |
++----------------+-------------------------+
+| CLICKED        | Переход по ссылке       |
++----------------+-------------------------+
+| BOUNCED        | Не удалось доставить    |
++----------------+-------------------------+
+| UNSUBSCRIBED   | Получатель отписался    |
++----------------+-------------------------+
+| SUBSCRIBED     | Получатель подписался   |
++----------------+-------------------------+
+| COMPLAINED     | Получатель пожаловался  |
++----------------+-------------------------+
+
+ClientInfo
+~~~~~~~~~~
+
++-----------------+----------------------------------+
+| Значение        | Описание                         |
++-----------------+----------------------------------+
+| platform        | Тип платформы. Например, DESKTOP |
++-----------------+----------------------------------+
+| operatingSystem | Операционная система             |
++-----------------+----------------------------------+
+| browser         | Браузер                          |
++-----------------+----------------------------------+
+| userAgent       | userAgent                        |
++-----------------+----------------------------------+
+| ipAddress       | IP адрес                         |
++-----------------+----------------------------------+
+| geolocation     | Геолокация                       |
++-----------------+----------------------------------+
+
+Geolocation
+~~~~~~~~~~~
+
++----------+----------+
+| Значение | Описание |
++----------+----------+
+| country  | Страна   |
++----------+----------+
+| region   | Регион   |
++----------+----------+
+| city     | Город    |
++----------+----------+
+
+*В данный момент геолокация не определяется, поэтому в ближайшее время параметры country, region и city будут пустыми.*
+
 
 Пример запроса Sent:
 
 .. code-block:: json
 
-  {
-    "messageId":"MdbsucAq4Ro",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"SENT",
-    "url":null,
-    "dateTime":"2018-03-29T16:41:57.7943021",
-    "clientInfo":
     {
-      "platform":null,
-      "operatingSystem":null,
-      "browser":null,
-      "userAgent":null,
-      "ipAddress":null,
-      "geolocation":
-      {
-        "country":null,
-        "region":null,
-        "city":null
-      }
+        "messageId":"MdbsucAq4Ro",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"SENT",
+        "url":null,
+        "dateTime":"2018-03-29T16:41:57.7943021",
+        "clientInfo":{
+            "platform":null,
+            "operatingSystem":null,
+            "browser":null,
+            "userAgent":null,
+            "ipAddress":null,
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
 
 Пример запроса Delivered:
 
 .. code-block:: json
 
-  {  
-    "messageId":"MdzY0T1MFtT",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"DELIVERED",
-    "url":null,
-    "dateTime":"2018-04-02T17:16:56",
-    "clientInfo":
-    {  
-      "platform":null,
-      "operatingSystem":null,
-      "browser":null,
-      "userAgent":null,
-      "ipAddress":null,
-      "geolocation":
-      {  
-        "country":null,
-        "region":null,
-        "city":null
-      }
+    {
+        "messageId":"MdzY0T1MFtT",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"DELIVERED",
+        "url":null,
+        "dateTime":"2018-04-02T17:16:56",
+        "clientInfo":{
+            "platform":null,
+            "operatingSystem":null,
+            "browser":null,
+            "userAgent":null,
+            "ipAddress":null,
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
 
 
 Пример запроса Opened:
 
 .. code-block:: json
 
-  {
-    "messageId":"MdbsucAq4Ro",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"OPENED",
-    "url":null,
-    "dateTime":"2018-03-29T16:43:07.8801537",
-    "clientInfo":
     {
-      "platform":"DESKTOP",
-      "operatingSystem":"Windows",
-      "browser":"Outlook",
-      "userAgent":"Mozilla/4.0(compatible;MSIE7.0;WindowsNT10.0;Win64;x64;Trident/7.0;.NET4.0C;.NET4.0E;.NETCLR2.0.50727;.NETCLR3.0.30729;.NETCLR3.5.30729;ASU2JS;MicrosoftOutlook16.0.9029;ms-office;MSOffice16)",
-      "ipAddress":"192.168.0.1",
-      "geolocation":
-      {
-        "country":null,
-        "region":null,
-        "city":null
-      }
+        "messageId":"MdbsucAq4Ro",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"OPENED",
+        "url":null,
+        "dateTime":"2018-03-29T16:43:07.8801537",
+        "clientInfo":{
+            "platform":"DESKTOP",
+            "operatingSystem":"Windows",
+            "browser":"Outlook",
+            "userAgent":"Mozilla/4.0(compatible;MSIE7.0;WindowsNT10.0;Win64;x64;Trident/7.0;.NET4.0C;.NET4.0E;.NETCLR2.0.50727;.NETCLR3.0.30729;.NETCLR3.5.30729;ASU2JS;MicrosoftOutlook16.0.9029;ms-office;MSOffice16)",
+            "ipAddress":"192.168.0.1",
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
  
 Пример запроса Clicked:
 
 .. code-block:: json
 
-  {  
-    "messageId":"MdbsucAq4Ro",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"CLICKED",
-    "url":"http://example.com",
-    "dateTime":"2018-03-29T16:44:31.536724",
-    "clientInfo":
-    {  
-      "platform":"DESKTOP",
-      "operatingSystem":"Windows",
-      "browser":"Chrome",
-      "userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
-      "ipAddress":"192.168.0.1",
-      "geolocation":
-      {  
-        "country":null,
-        "region":null,
-        "city":null
-      }
+    {
+        "messageId":"MdbsucAq4Ro",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"CLICKED",
+        "url":"http://example.com",
+        "dateTime":"2018-03-29T16:44:31.536724",
+        "clientInfo":{
+            "platform":"DESKTOP",
+            "operatingSystem":"Windows",
+            "browser":"Chrome",
+            "userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+            "ipAddress":"192.168.0.1",
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
  
 Пример запроса Unsubscribed:
 
 .. code-block:: json
 
-  {
-    "messageId":"MdbsucAq4Ro",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"UNSUBSCRIBED",
-    "url":null,
-    "dateTime":"2018-03-29T16:46:53.412013",
-    "clientInfo":
     {
-      "platform":"DESKTOP",
-      "operatingSystem":"Windows",
-      "browser":"Chrome",
-      "userAgent":"Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/65.0.3325.181Safari/537.36",
-      "ipAddress":"192.168.0.1",
-      "geolocation":
-      {
-        "country":null,
-        "region":null,
-        "city":null
-      }
+        "messageId":"MdbsucAq4Ro",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"UNSUBSCRIBED",
+        "url":null,
+        "dateTime":"2018-03-29T16:46:53.412013",
+        "clientInfo":{
+            "platform":"DESKTOP",
+            "operatingSystem":"Windows",
+            "browser":"Chrome",
+            "userAgent":"Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/65.0.3325.181Safari/537.36",
+            "ipAddress":"192.168.0.1",
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
   
 Пример запроса Subscribed:
 
 .. code-block:: json
 
-  {
-    "messageId":"MdbsucAq4Ro",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"SUBSCRIBED",
-    "url":null,
-    "dateTime":"2018-03-29T16:47:13.5839294",
-    "clientInfo":
     {
-      "platform":"DESKTOP",
-      "operatingSystem":"Windows",
-      "browser":"Chrome",
-      "userAgent":"Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/65.0.3325.181Safari/537.36",
-      "ipAddress":"192.168.0.1",
-      "geolocation":
-      {
-        "country":null,
-        "region":null,
-        "city":null
-      }
+        "messageId":"MdbsucAq4Ro",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"SUBSCRIBED",
+        "url":null,
+        "dateTime":"2018-03-29T16:47:13.5839294",
+        "clientInfo":{
+            "platform":"DESKTOP",
+            "operatingSystem":"Windows",
+            "browser":"Chrome",
+            "userAgent":"Mozilla/5.0(WindowsNT10.0;Win64;x64)AppleWebKit/537.36(KHTML,likeGecko)Chrome/65.0.3325.181Safari/537.36",
+            "ipAddress":"192.168.0.1",
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
   
 Пример запроса Bounced:
 
 .. code-block:: json
 
-  {  
-    "messageId":"MdzY0T1MFtT",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"BOUNCED",
-    "url":null,
-    "dateTime":"2018-04-02T17:16:56",
-    "clientInfo":
-    {  
-      "platform":null,
-      "operatingSystem":null,
-      "browser":null,
-      "userAgent":null,
-      "ipAddress":null,
-      "geolocation":
-      {  
-        "country":null,
-        "region":null,
-        "city":null
-      }
+    {
+        "messageId":"MdzY0T1MFtT",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"BOUNCED",
+        "url":null,
+        "dateTime":"2018-04-02T17:16:56",
+        "clientInfo":{
+            "platform":null,
+            "operatingSystem":null,
+            "browser":null,
+            "userAgent":null,
+            "ipAddress":null,
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
   
 Пример запроса Complained:
 
 .. code-block:: json
 
-  {  
-    "messageId":"MdzY0T1MFtT",
-    "taskId":0,
-    "userMessageId":null,
-    "userCampaignId":null,
-    "email":"address@example.com",
-    "event":"COMPLAINED",
-    "url":null,
-    "dateTime":"2018-04-02T17:16:56",
-    "clientInfo":
-    {  
-      "platform":null,
-      "operatingSystem":null,
-      "browser":null,
-      "userAgent":null,
-      "ipAddress":null,
-      "geolocation":
-      {  
-        "country":null,
-        "region":null,
-        "city":null
-      }
+    {
+        "messageId":"MdzY0T1MFtT",
+        "taskId":0,
+        "userMessageId":null,
+        "userCampaignId":null,
+        "email":"address@example.com",
+        "event":"COMPLAINED",
+        "url":null,
+        "dateTime":"2018-04-02T17:16:56",
+        "clientInfo":{
+            "platform":null,
+            "operatingSystem":null,
+            "browser":null,
+            "userAgent":null,
+            "ipAddress":null,
+            "geolocation":{
+                "country":null,
+                "region":null,
+                "city":null
+            }
+        }
     }
-  }
  
-Такие параметры, как userMessageId и userCampaignId будут переданы пустыми для следующих событий:
 
-* Delivered
-* Bounced
-* Complained
- 
- 
-В данный момент геолокация не определяется, поэтому в ближайшее время параметры country, region и city будут пустыми.
+
  
