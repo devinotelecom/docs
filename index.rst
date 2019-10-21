@@ -38,8 +38,8 @@
    :caption: Входящие SMS
    
    httpincoming
-   
-   
+
+
 .. _viber-docs:
 .. toctree::
    :maxdepth: 2
@@ -47,6 +47,13 @@
    
    viber-resender
 
+
+.. _wa-docs:
+.. toctree::
+   :maxdepth: 2
+   :caption: WhatsApp
+   
+   whatsapp
 
 .. _email-docs:   
 .. toctree::
